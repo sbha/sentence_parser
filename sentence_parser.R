@@ -5,12 +5,13 @@
 
 
 caps = "([A-Z])"
+digits = "([0-9])"
 prefixes = "(Mr|St|Mrs|Ms|Dr|Prof|Capt|Cpt|Lt|Mt)\\."
 suffixes = "(Inc|Ltd|Jr|Sr|Co)"
 acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
 starters = "(Mr|Mrs|Ms|Dr|He\\s|She\\s|It\\s|They\\s|Their\\s|Our\\s|We\\s|But\\s|However\\s|That\\s|This\\s|Wherever)"
 websites = "\\.(com|edu|gov|io|me|net|org)"
-digits = "([0-9])"
+
 
 split_into_sentences <- function(text){
   text = gsub("\n|\r\n"," ", text)
