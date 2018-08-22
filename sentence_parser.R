@@ -1,8 +1,4 @@
-# This is a function built off this [answer][1] for a Python solution. It allows some flexibility in that the lists of prefixes, suffixes, etc. can be modified to your specific text. 
-# Definitely not perfect, but could be useful. 
-# [1]: https://stackoverflow.com/a/31505798/3058123
-# https://stackoverflow.com/questions/18712878/r-break-corpus-into-sentences
-
+# Crude sentence parser 
 
 split_into_sentences <- function(text){
   caps = "([A-Z])"
@@ -11,7 +7,7 @@ split_into_sentences <- function(text){
   suffixes = "(Inc|Ltd|Jr|Sr|Co)"
   acronyms = "([A-Z][.][A-Z][.](?:[A-Z][.])?)"
   starters = "(Mr|Mrs|Ms|Dr|He\\s|She\\s|It\\s|They\\s|Their\\s|Our\\s|We\\s|But\\s|However\\s|That\\s|This\\s|Wherever)"
-  websites = "\\.(com|edu|gov|io|me|net|org)"
+  websites = "\\.(com|edu|gov|io|me|net|org|biz)"
   
   text = gsub("\n|\r\n"," ", text)
   text = gsub(prefixes, "\\1<prd>", text)
