@@ -36,26 +36,23 @@ split_into_sentences <- function(text){
   text = gsub('\\!', '!<stop>', text)
   text = gsub('<prd>', '.', text)
   sentence = strsplit(text, "<stop>\\s*")
+  names(sentence) <- 'sentence'
   return(sentence)
 }
 
-sentences <- split_into_sentences(txt_clean)
-names(sentences) <- 'sentence'
-
-df_sentences <- dplyr::bind_rows(sentences)
-df_sentences <- purrr::map_df(sentences, ~.x)
+# sentences <- split_into_sentences(txt_clean)
+# df_sentences <- dplyr::bind_rows(sentences)
+# df_sentences <- purrr::map_df(sentences, ~.x)
 
 # samples
-# small sample
+# small sample:
 test_text <- 'Dr. John Johnson, Ph.D. worked for X.Y.Z. Inc. for 4.5 years. He earned $2.5 million when it sold! Now he works at www.website.com.'
 sentences <- split_into_sentences(test_text)
-names(sentences) <- 'sentence'
 df_sentences <- dplyr::bind_rows(sentences) 
 dplyr::bind_rows(sentences)
 df_sentences
 
-
-# Sample:
+# larger sample:
 # James Joyce's Dubliners
 txt_url <- 'https://www.gutenberg.org/files/2814/2814-0.txt'
 txt_raw <- readr::read_file(txt_url)
@@ -66,9 +63,7 @@ txt_clean <- gsub('\\s+', ' ', txt_clean)
 txt_clean <- gsub('“|”', '"', txt_clean)
 txt_clean <- gsub('’', "'", txt_clean)
 
-
 sentences <- split_into_sentences(txt_clean)
-names(sentences) <- 'sentence'
 
 # create a data frame using either of the following:
 df_sentences <- purrr::map_df(sentences, ~.x)
