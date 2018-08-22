@@ -55,6 +55,7 @@ dplyr::bind_rows(sentences)
 df_sentences
 
 
+# Sample:
 # James Joyce's Dubliners
 txt_url <- 'https://www.gutenberg.org/files/2814/2814-0.txt'
 txt_raw <- readr::read_file(txt_url)
@@ -65,8 +66,11 @@ txt_clean <- gsub('\\s+', ' ', txt_clean)
 txt_clean <- gsub('“|”', '"', txt_clean)
 txt_clean <- gsub('’', "'", txt_clean)
 
+
 sentences <- split_into_sentences(txt_clean)
 names(sentences) <- 'sentence'
+
+# create a data frame using either of the following:
 df_sentences <- purrr::map_df(sentences, ~.x)
 df_sentences <- dplyr::bind_rows(sentences) 
 
